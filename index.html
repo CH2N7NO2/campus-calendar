@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#194a3e" />
+  <title>校园日历</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">CAMPUS PLANNER</p>
+      <h1>校园日历</h1>
+    </div>
+    <div class="date-chip" id="todayLabel"></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">今天先做好最重要的事</p>
+        <h2 id="greeting">今天的安排</h2>
+        <p id="summary">加载中…</p>
+      </div>
+      <button class="primary" id="openAdd">＋ 添加安排</button>
+    </section>
+
+    <section class="dashboard">
+      <article class="panel today-panel">
+        <div class="panel-heading"><h3>今日清单</h3><button class="link" id="goToday">回到今天</button></div>
+        <div id="todayList" class="agenda"></div>
+      </article>
+      <article class="panel priorities-panel">
+        <div class="panel-heading"><h3>本周重点</h3><span id="weekCount"></span></div>
+        <div id="priorityList" class="priority-list"></div>
+      </article>
+    </section>
+
+    <section class="panel calendar-panel">
+      <div class="calendar-tools">
+        <div class="week-nav"><button class="icon" id="prevWeek" aria-label="上一周">←</button><h3 id="weekTitle"></h3><button class="icon" id="nextWeek" aria-label="下一周">→</button></div>
+        <div class="legend"><span><i class="course"></i>课程</span><span><i class="study"></i>学习</span><span><i class="life"></i>生活</span><span><i class="deadline"></i>截止</span></div>
+      </div>
+      <div class="calendar-wrap"><div id="calendar" class="calendar"></div></div>
+    </section>
+  </main>
+
+  <dialog id="eventDialog">
+    <form id="eventForm">
+      <div class="dialog-heading"><div><p class="eyebrow">新安排</p><h2>把它放进日历</h2></div><button type="button" class="icon" id="closeDialog" aria-label="关闭">×</button></div>
+      <label>事项名称<input required name="title" maxlength="40" placeholder="例如：高等数学作业" /></label>
+      <div class="form-row"><label>日期<input required type="date" name="date" /></label><label>开始时间<input required type="time" name="time" value="09:00" /></label></div>
+      <div class="form-row"><label>结束时间<input type="time" name="endTime" value="10:00" /></label><label>类型<select name="type"><option value="course">课程</option><option value="study">学习</option><option value="life">生活</option><option value="deadline">截止</option></select></label></div>
+      <label>备注（可选）<textarea name="note" maxlength="100" placeholder="地点、准备事项或提醒"></textarea></label>
+      <div class="form-actions"><button type="button" class="secondary" id="cancelDialog">取消</button><button class="primary" type="submit">保存安排</button></div>
+    </form>
+  </dialog>
+
+  <template id="eventTemplate"><button class="event"><span class="event-time"></span><span class="event-title"></span></button></template>
+  <script src="app.js"></script>
+</body>
+</html>
+
